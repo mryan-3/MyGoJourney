@@ -2,5 +2,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("Hello World from Go")
+	var name string = `Ryan
+	Malawa`
+	fmt.Println(name)
 }
