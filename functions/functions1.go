@@ -4,7 +4,7 @@ import (
 	"errors"
 )
 
-func main(){
+func Calculator(){
 	fmt.Printf("The Follwing is a simple calculator\n\n")
 	var num1 int = 300
 	var num2 int = 61
