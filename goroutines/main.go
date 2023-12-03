@@ -15,9 +15,8 @@ func main(){
 
     go printNumbers()
     fmt.Println("Hello")
-
-
-    time.Sleep(1 * time.Second)
+    time.Sleep(6 * time.Second)
+    fmt.Println("Done")
 }
 
 //time.sleep serves two purposes:
