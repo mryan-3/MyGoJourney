@@ -7,25 +7,24 @@ import (
 
 
 func main(){
-    start := time.Now()
+    now := time.Now()
     defer func (){
-        fmt.Println(time.Since(start))
+        fmt.Println(time.Since(now))
     }()
 
+    smokeSignal := make(chan bool)
 
-    evilNinjas := []string {"Tom", "John", "Bob", "Andy"}
+    evilNinja := "Tommy"
 
+    go attack(evilNinja, smokeSignal)
 
-    for _, evilNinja := range evilNinjas{
-      go attack(evilNinja)
-    }
-
-    time.Sleep(2 * time.Second)
+    <- smokeSignal
 }
 
-func attack(target string){
-    fmt.Println("Throwing stars at ", target)
+func attack(target string, smokeSignal chan bool){
     time.Sleep(1 * time.Second)
+    fmt.Println("Throwing stars at", target)
+    smokeSignal <- true
 }
 
 
