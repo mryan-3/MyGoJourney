@@ -2,29 +2,18 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
 
 func main(){
-    now := time.Now()
-    defer func (){
-        fmt.Println(time.Since(now))
-    }()
+    chanel := make(chan string, 2)
+    chanel <- "First Message"
+    chanel <- "Second message"
+    fmt.Println(<- chanel)
+    fmt.Println(<- chanel)
 
-    smokeSignal := make(chan bool)
 
-    evilNinja := "Tommy"
 
-    go attack(evilNinja, smokeSignal)
-
-    <- smokeSignal
-}
-
-func attack(target string, smokeSignal chan bool){
-    time.Sleep(1 * time.Second)
-    fmt.Println("Throwing stars at", target)
-    smokeSignal <- true
 }
 
 
