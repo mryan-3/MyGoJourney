@@ -1,19 +1,30 @@
 package main
 
 import (
+	"math/rand"
 	"fmt"
+	"time"
 )
 
 
 func main(){
-    chanel := make(chan string, 2)
-    chanel <- "First Message"
-    chanel <- "Second message"
-    fmt.Println(<- chanel)
-    fmt.Println(<- chanel)
+    chanel := make(chan string)
 
+    go throwStars(chanel)
+    for mess := range chanel{
 
+    fmt.Println(mess)
+    }
+}
 
+func throwStars (chanel chan string ){
+    rand.NewSource(time.Now().UnixNano())
+    numRounds := 3
+    for i:= 0; i< numRounds; i++{
+        score := rand.Intn(10)
+        chanel <- fmt.Sprintf("You scored: %d", score)
+    }
+    close(chanel)
 }
 
 
